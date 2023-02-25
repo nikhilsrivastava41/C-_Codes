@@ -1,4 +1,6 @@
 #include<iostream>
+#include<string>
+#include<memory>
 using namespace std;
 
 //****template****
@@ -54,6 +56,40 @@ Bovector<T> operator*(Bovector<T> arr1, Bovector<T> arr2){
     //constexpr long double operator"" _m(long double x){return x*1000;}
     
 //****UserDefinedLiterals****
+
+class Dog{
+    Dog();      //constructor
+    Dog(const Dog&);        //copy constructor
+    Dog& operator=(const Dog&);     //copy assignment operator
+    ~Dog();         //Destructor
+    
+    //if any of the above is written the move constructor cannot be made
+
+    //Dog(&&Dog);     //move constructor
+    //Dog& operator=(Dog&&);    //move assignment operator
+
+};
+class Cat{
+    string name_;
+    public:
+    Cat(string x){
+        cout<<"Cat is created "<<x<<endl;
+        name_=x;
+    }
+    ~Cat(){
+        cout<<"Cat is destroyed "<<name_<<endl;
+    }
+    void bark(){
+        cout<<"meow  "<<name_<<endl;
+    }
+};
+void foo(){
+    Cat* c1 = new Cat("Ruby");
+
+    shared_ptr<Cat> c2(new Cat("Lucy"));
+    shared_ptr<Cat> c3=make_shared<Cat>("Taylor");  //this is faster and exception safe
+    c1->bark();
+}
 int main(){
 
     //****template****
@@ -82,5 +118,7 @@ int main(){
     cout<<height<<endl;
     cout<< height + 5.6 + 12.0_m<<endl;
     //****UserDefinedLiterals****
+
+    foo();
     return 0;
 }
