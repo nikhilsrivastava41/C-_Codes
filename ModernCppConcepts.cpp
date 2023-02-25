@@ -41,6 +41,8 @@ Bovector<T> operator*(Bovector<T> arr1, Bovector<T> arr2){
     return arr;
 }
 int main(){
+
+    //****template****
     int area = square<int>(3);
     double  areaD= square<double>(3.3);     //not necessary to provide the datatype incase of function template
     cout<<area<<"\t"<<areaD<<endl;
@@ -53,5 +55,16 @@ int main(){
     bv.print();
     bv = square(bv);
     bv.print();
+
+    //****template****
+
+    //****lambda functions****
+
+    cout<< [](int x,int y){return x+y;}(3,4)<<endl;
+    auto f = [](int x,int y){return x+y;};
+    cout<<f(3,4)<<endl;
+
+    //****lambda functions****
+
     return 0;
 }
